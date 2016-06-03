@@ -1,21 +1,22 @@
 <h1>業務員管理系統</h1>
+
+
+
+
 <table>
   <tr>
   <% @salesmen.each do |salesman|%>
  	<td>
- 	  <%= salesman.id %>
- 	</td>
-	<td>
 	  <%= salesman.name %>
 	</td>
 	<td>
-	  <%= link_to 'show', salesman_path(salesman) %>
+	  <%= link_to 'Show', salesman_path(salesman),:page => params %>
 	</td>
 	<td>
-	  <%= link_to 'edit', edit_salesman_path(salesman) %>
+	  <%= link_to 'Edit', edit_salesman_path(salesman),:page => params %>
 	  </td>
 	<td>
-	  <%= link_to 'delete', salesman_path(salesman) %>
+	  <%= link_to 'Delete', salesman_path(salesman),:page => params, :method => :delete, :data => {:confirm => "Are you sure?"} %>
 	  </td>
 	<td>
 		
@@ -32,8 +33,26 @@
 	<td>
 		
 	</td>
-
-  <%end %>
+	<br>
   </tr>
 </table>
+<%end %>
+
 <%= paginate @salesmen %>
+
+<%= link_to 'new' %>
+
+	<%= form_for @salesman do |f| %> 
+
+    	<%= f.label :name, "Name" %>
+    	<%= f.text_field :name %>
+	  
+    	<%= f.label :email, "Email" %>
+    	<%= f.text_field :email %>
+	 
+    	<%= f.label :agent_id, "Agent_id" %>
+    	<%= f.text_field :agent_id %>
+	    <%= f.submit "save" %>	
+ 
+	<%end%>
+
