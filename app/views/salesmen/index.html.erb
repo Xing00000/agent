@@ -10,13 +10,13 @@
 	  <%= salesman.name %>
 	</td>
 	<td>
-	  <%= link_to 'Show', salesman_path(salesman),:page => params %>
+	  <%= link_to 'Show', salesman_path(salesman) %>
 	</td>
 	<td>
-	  <%= link_to 'Edit', edit_salesman_path(salesman),:page => params %>
+	  <%= link_to 'Edit', edit_salesman_path(salesman, :page => params[:page]) %>
 	  </td>
 	<td>
-	  <%= link_to 'Delete', salesman_path(salesman),:page => params, :method => :delete, :data => {:confirm => "Are you sure?"} %>
+	  <%= link_to 'Delete', salesman_path(salesman, :page => params[:page]), :method => :delete, :data => {:confirm => "Are you sure?"}%>
 	  </td>
 	<td>
 		

@@ -20,7 +20,7 @@ class SalesmenController < ApplicationController
     @salesman = Salesman.new(salesman_params)
     @salesman.save
 
-    redirect_to salesmen_path
+    redirect_to salesmen_url
   end
 
   def edit
@@ -31,14 +31,14 @@ class SalesmenController < ApplicationController
   def update
    	@salesman.update(salesman_params)
     @salesmen = Salesman.page(params[:page]).per(5)
-  	# redirect_to salesmen_url(@salesmen)
-  	render :action => :index
+  	redirect_to salesmen_url 
+
   end
 
 
   def destroy
   	@salesman.destroy
-  	redirect_to salesmen_path
+  	redirect_to salesmen_url :page => params[:page] 
   end
 
   private
