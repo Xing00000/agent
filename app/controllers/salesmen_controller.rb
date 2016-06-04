@@ -1,9 +1,8 @@
 class SalesmenController < ApplicationController
   before_action:set_salesman_find,:only =>[:show, :edit,:update, :destroy]
-
+  before_action:set_new_index,:only => [:index,:new]
+  
   def index
-	@salesmen = Salesman.page(params[:page]).per(5)
-    @salesman = Salesman.new
   end
   
   def show
@@ -11,16 +10,17 @@ class SalesmenController < ApplicationController
   end
 
   def new
-    @salesmen = Salesman.page(params[:page]).per(5)
-    @salesman = Salesman.new
     redirect_to salesmen_url	 
   end
 
   def create
     @salesman = Salesman.new(salesman_params)
-    @salesman.save
-
-    redirect_to salesmen_url
+    if @salesman.save
+      redirect_to :action => :index
+    else
+      @salesmen = Salesman.page(params[:page]).per(5)
+      render :action => :index
+    end
   end
 
   def edit
@@ -29,10 +29,13 @@ class SalesmenController < ApplicationController
   end
 
   def update
-   	@salesman.update(salesman_params)
-    @salesmen = Salesman.page(params[:page]).per(5)
-  	redirect_to salesmen_url 
-
+   	if@salesman.update(salesman_params)
+      @salesmen = Salesman.page(params[:page]).per(5)
+  	  redirect_to salesmen_url 
+    else
+	  @salesmen = Salesman.page(params[:page]).per(5)
+	  render :action => :index    
+    end
   end
 
 
@@ -48,8 +51,11 @@ class SalesmenController < ApplicationController
   end
 
   def set_salesman_find
-	  	@salesman = Salesman.find(params[:id])
+	@salesman = Salesman.find(params[:id])
   end
-  
+  def set_new_index
+	@salesmen = Salesman.page(params[:page]).per(5)
+    @salesman = Salesman.new
+  end 
 
 end
