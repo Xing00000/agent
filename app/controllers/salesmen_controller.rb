@@ -50,7 +50,7 @@ class SalesmenController < ApplicationController
   private
 
   def salesman_params
-  	params.require(:salesman).permit(:name, :email, :agent_id)
+  	params.require(:salesman).permit(:name, :email, :agent_id, :date, :time, :date_html5, :time_html5, :url, :mobie)
   end
 
   def set_salesman_find

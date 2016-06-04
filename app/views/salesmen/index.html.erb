@@ -38,18 +38,35 @@
 <%= paginate @salesmen %>
 
 <%= link_to 'new' %>
-
+<table>
+	<tr>
 	<%= form_for @salesman do |f| %> 
-
+  	  <td>
     	<%= f.label :name, "Name" %>
     	<%= f.text_field :name %>
-	  
+	  </td>
+      <td>
     	<%= f.label :email, "Email" %>
     	<%= f.text_field :email %>
-	 
+	  </td>
+	  <td>
     	<%= f.label :agent_id, "Agent_id" %>
     	<%= f.text_field :agent_id %>
-	    <%= f.submit "save" %>	
- 
+	  </td>	
+	</tr>
+	<tr>
+ 	  <td>
+	  	<%= f.label :date, "Date" %>
+    	<%= f.date_select :date %>
+	  </td>
+	  <td>
+	  	<%= f.label :time, "Time" %>
+    	<%= f.datetime_select :time %>
+	  </td>
+	  <td>
+	    <%= f.submit "save" %>
+	  </td>
+	</tr>  
 	<%end%>
 
+</table>
