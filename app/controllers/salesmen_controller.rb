@@ -16,6 +16,7 @@ class SalesmenController < ApplicationController
   def create
     @salesman = Salesman.new(salesman_params)
     if @salesman.save
+      flash[:notice] = "event was successfully created"
       redirect_to :action => :index
     else
       @salesmen = Salesman.page(params[:page]).per(5)
@@ -31,7 +32,8 @@ class SalesmenController < ApplicationController
   def update
    	if@salesman.update(salesman_params)
       @salesmen = Salesman.page(params[:page]).per(5)
-  	  redirect_to salesmen_url 
+  	  flash[:notice] = "event was successfully updated"
+  	  redirect_to salesmen_url
     else
 	  @salesmen = Salesman.page(params[:page]).per(5)
 	  render :action => :index    
@@ -41,7 +43,8 @@ class SalesmenController < ApplicationController
 
   def destroy
   	@salesman.destroy
-  	redirect_to salesmen_url :page => params[:page] 
+  	flash[:alert] = "event was successfully deleted"
+  	redirect_to salesmen_url :page => params[:page]
   end
 
   private
