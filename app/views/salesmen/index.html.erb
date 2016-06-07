@@ -37,36 +37,33 @@
 
 <%= paginate @salesmen %>
 
-<%= link_to 'new' %>
+<%= link_to 'New', salesmen_path %>
+
 <table>
-	<tr>
-	<%= form_for @salesman do |f| %> 
+	
+	
+  	<tr>
   	  <td>
+  	  <%= form_for @salesman do |f| %> 
     	<%= f.label :name, "Name" %>
     	<%= f.text_field :name %>
-	  </td>
-      <td>
+	 
     	<%= f.label :email, "Email" %>
     	<%= f.text_field :email %>
-	  </td>
-	  <td>
+
     	<%= f.label :agent_id, "Agent_id" %>
     	<%= f.text_field :agent_id %>
-	  </td>	
-	</tr>
-	<tr>
- 	  <td>
+	 
 	  	<%= f.label :date, "Date" %>
     	<%= f.date_select :date %>
-	  </td>
-	  <td>
+	  
 	  	<%= f.label :time, "Time" %>
     	<%= f.datetime_select :time %>
-	  </td>
-	  <td>
 	    <%= f.submit "save" %>
+
+	  <%end%>
 	  </td>
 	</tr>  
-	<%end%>
+	
 
 </table>

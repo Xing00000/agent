@@ -1,7 +1,6 @@
 class SalesmenController < ApplicationController
   before_action:set_salesman_find,:only =>[:show, :edit,:update, :destroy]
-  before_action:set_new_index,:only => [:index,:new]
-  
+  before_action:set_new_index,:only => [:index, :new]
   def index
   end
   
@@ -10,14 +9,15 @@ class SalesmenController < ApplicationController
   end
 
   def new
-    redirect_to salesmen_url	 
+  	
+	render :action => :index
   end
 
   def create
     @salesman = Salesman.new(salesman_params)
     if @salesman.save
       flash[:notice] = "event was successfully created"
-      redirect_to :action => :index
+      redirect_to salesman_path(@salesman)
     else
       @salesmen = Salesman.page(params[:page]).per(5)
       render :action => :index
@@ -25,7 +25,7 @@ class SalesmenController < ApplicationController
   end
 
   def edit
-    @salesmen = Salesman.page(params[:page]).per(5)
+  	@salesmen = Salesman.page(params[:page]).per(5)
     render :action => :index
   end
 
@@ -33,7 +33,7 @@ class SalesmenController < ApplicationController
    	if@salesman.update(salesman_params)
       @salesmen = Salesman.page(params[:page]).per(5)
   	  flash[:notice] = "event was successfully updated"
-  	  redirect_to salesmen_url
+  	  redirect_to salesman_path(@salesman)
     else
 	  @salesmen = Salesman.page(params[:page]).per(5)
 	  render :action => :index    
@@ -50,7 +50,7 @@ class SalesmenController < ApplicationController
   private
 
   def salesman_params
-  	params.require(:salesman).permit(:name, :email, :agent_id, :date, :time, :date_html5, :time_html5, :url, :mobie)
+  	params.require(:salesman).permit(:name, :email, :agent_id, :date, :time)
   end
 
   def set_salesman_find
