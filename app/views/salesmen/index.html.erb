@@ -1,69 +1,61 @@
 <%= render :partial => 'form'%>
 <h1>業務員管理系統</h1>
-<table>
+<table calss = "table table-bordered">
   <tr>
   <% @salesmen.each do |salesman|%>
  	<td>
 	  <%= salesman.name %>
 	</td>
 	<td>
-	  <%= link_to 'Show', salesman_path(salesman) %>
+	  <%= link_to 'Show', salesman_path(salesman),class:"btn btn-primary" %>
 	</td>
 	<td>
-	  <%= link_to 'Edit', edit_salesman_path(salesman, :page => params[:page]) %>
+	  <%= link_to 'Edit', edit_salesman_path(salesman, :page => params[:page]) ,class:"btn btn-default" %>
 	  </td>
 	<td>
-	  <%= link_to 'Delete', salesman_path(salesman, :page => params[:page]), :method => :delete, :data => {:confirm => "Are you sure?"}%>
+	  <%= link_to 'Delete', salesman_path(salesman, :page => params[:page]), :method => :delete, :data => {:confirm => "Are you sure?"},class:"btn btn-danger" %>
 	  </td>
-	<td>
-		
-	</td>
-	<td>
-		
-	</td>
-	<td>
-		
-	</td>
-	<td>
-		
-	</td>
-	<td>
-		
-	</td>
-	<br>
   </tr>
+  <%end %>
 </table>
-<%end %>
+
 
 <%= paginate @salesmen %>
+<br>
+<%= link_to 'New', salesmen_path,class:"btn btn-default" %>
+<br>
+<br>
 
-<%= link_to 'New', salesmen_path %>
-
-<table>
-	
-	
-  	<tr>
-  	  <td>
+<form class="form-horizontal">
+  <div class="form-group">	
+  	<div class="col-md-4 pull-left" >
   	  <%= form_for @salesman do |f| %> 
-    	<%= f.label :name, "Name" %>
-    	<%= f.text_field :name %>
-	 
-    	<%= f.label :email, "Email" %>
-    	<%= f.text_field :email %>
 
+    	<%= f.label :name, "Name" %>
+    	<%= f.text_field :name, :class => "form-control"%>
+	</div>
+	<div class="col-md-4">
+    	<%= f.label :email, "Email" %>
+    	<%= f.email_field :email, :class => "form-control" %>
+	</div>
+	<div class="col-md-4">
     	<%= f.label :agent_id, "Agent_id" %>
-    	<%= f.text_field :agent_id %>
-	 
+    	<%= f.text_field :agent_id, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-4">
 	  	<%= f.label :date, "Date" %>
     	<%= f.date_select :date %>
-	  
+	</div> 
+	<div class="col-md-4">
 	  	<%= f.label :time, "Time" %>
     	<%= f.datetime_select :time %>
-	    <%= f.submit "save" %>
-
+    </div>
+    <div class="col-md-4">
+	    <%= f.submit "save",class:"btn btn-primary"  %>
+	</div>
 	  <%end%>
-	  </td>
-	</tr>  
-	
-
-</table>
+	</div>
+  </div>	  
+</form>
