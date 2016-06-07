@@ -26,36 +26,27 @@
 <br>
 <br>
 
-<form class="form-horizontal">
-  <div class="form-group">	
-  	<div class="col-md-4 pull-left" >
+<table calss = "table table-bordered">
+	<tr>
+	  <td>
   	  <%= form_for @salesman do |f| %> 
 
     	<%= f.label :name, "Name" %>
     	<%= f.text_field :name, :class => "form-control"%>
-	</div>
-	<div class="col-md-4">
+	
     	<%= f.label :email, "Email" %>
     	<%= f.email_field :email, :class => "form-control" %>
-	</div>
-	<div class="col-md-4">
+	
     	<%= f.label :agent_id, "Agent_id" %>
     	<%= f.text_field :agent_id, :class => "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-md-4">
+
 	  	<%= f.label :date, "Date" %>
     	<%= f.date_select :date %>
-	</div> 
-	<div class="col-md-4">
+
 	  	<%= f.label :time, "Time" %>
     	<%= f.datetime_select :time %>
-    </div>
-    <div class="col-md-4">
-	    <%= f.submit "save",class:"btn btn-primary"  %>
-	</div>
+        <%= f.submit "save" %>
 	  <%end%>
-	</div>
-  </div>	  
-</form>
+	  </td>
+	</tr>
+</table>
